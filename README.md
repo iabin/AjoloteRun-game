@@ -6,4 +6,4 @@ and use the command
 godot 
 
 
-![alt text](https://raw.githubusercontent.com/iabin/AjoloteRun/master/screenshots/game.png)
+![alt text](https://raw.githubusercontent.com/iabin/AjoloteRun-game/master/screenshots/game.png)
