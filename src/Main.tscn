@@ -1,0 +1,204 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Food.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Power.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Life.tscn" type="PackedScene" id=5]
+[ext_resource path="res://media/sprites/fondo/algas/frame_00_delay-0.16s.png" type="Texture" id=6]
+[ext_resource path="res://media/sprites/fondo/algas/frame_01_delay-0.16s.png" type="Texture" id=7]
+[ext_resource path="res://media/sprites/fondo/algas/frame_02_delay-0.16s.png" type="Texture" id=8]
+[ext_resource path="res://media/sprites/fondo/algas/frame_03_delay-0.16s.png" type="Texture" id=9]
+[ext_resource path="res://media/sprites/fondo/algas/frame_04_delay-0.16s.png" type="Texture" id=10]
+[ext_resource path="res://media/sprites/fondo/algas/frame_05_delay-0.16s.png" type="Texture" id=11]
+[ext_resource path="res://media/sprites/fondo/algas/frame_06_delay-0.16s.png" type="Texture" id=12]
+[ext_resource path="res://media/sprites/fondo/algas/frame_08_delay-0.16s.png" type="Texture" id=13]
+[ext_resource path="res://media/sprites/fondo/algas/frame_07_delay-0.16s.png" type="Texture" id=14]
+[ext_resource path="res://media/sprites/fondo/algas/frame_09_delay-0.16s.png" type="Texture" id=15]
+[ext_resource path="res://media/sprites/fondo/algas/frame_10_delay-0.16s.png" type="Texture" id=16]
+[ext_resource path="res://media/sprites/fondo/algas/frame_12_delay-0.16s.png" type="Texture" id=17]
+[ext_resource path="res://media/sprites/fondo/algas/frame_11_delay-0.16s.png" type="Texture" id=18]
+[ext_resource path="res://media/sprites/fondo/algas/frame_13_delay-0.16s.png" type="Texture" id=19]
+[ext_resource path="res://media/sprites/fondo/algas/frame_14_delay-0.16s.png" type="Texture" id=20]
+[ext_resource path="res://media/sprites/fondo/algas/frame_15_delay-0.16s.png" type="Texture" id=21]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=22]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=23]
+[ext_resource path="res://media/sound/gggg.ogg" type="AudioStream" id=24]
+[ext_resource path="res://media/sound/hurt.ogg" type="AudioStream" id=25]
+[ext_resource path="res://media/sound/music.ogg" type="AudioStream" id=26]
+[ext_resource path="res://media/sound/fed.ogg" type="AudioStream" id=27]
+[ext_resource path="res://media/sound/chi.ogg" type="AudioStream" id=28]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Curve2D" id=2]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -373.371, -4.33838, 0, 0, 0, 0, -375.421, 426.277 )
+}
+
+[node name="Main" type="Node" index="0"]
+
+script = ExtResource( 1 )
+Mob = ExtResource( 2 )
+Food = ExtResource( 3 )
+Power = ExtResource( 4 )
+Life = ExtResource( 5 )
+
+[node name="Background2" type="AnimatedSprite" parent="." index="0"]
+
+position = Vector2( 372.314, 204.644 )
+scale = Vector2( 1.52314, 1.46519 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 9
+playing = true
+
+[node name="Player" parent="." index="1" instance=ExtResource( 22 )]
+
+[node name="FoodTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = false
+
+[node name="MobTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.45
+one_shot = false
+autostart = false
+
+[node name="ScoreTimer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="StartTimer" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="PowerTimer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = false
+
+[node name="LifeTimer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = false
+
+[node name="StartPosition" type="Position2D" parent="." index="8"]
+
+position = Vector2( 240, 450 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="MobPath" type="Path2D" parent="." index="9"]
+
+editor/display_folded = true
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+position = Vector2( 349.446, -4.95801 )
+curve = SubResource( 2 )
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" index="0"]
+
+position = Vector2( -373.371, -4.33838 )
+rotation = 1.57556
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = true
+lookahead = 4.0
+
+[node name="HUD" parent="." index="10" instance=ExtResource( 23 )]
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 24 )
+volume_db = 11.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Hurt" type="AudioStreamPlayer" parent="." index="12"]
+
+stream = ExtResource( 25 )
+volume_db = 11.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="13"]
+
+stream = ExtResource( 26 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="FoodSound" type="AudioStreamPlayer" parent="." index="14"]
+
+stream = ExtResource( 27 )
+volume_db = 11.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Life_up" type="AudioStreamPlayer" parent="." index="15"]
+
+stream = ExtResource( 28 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="fed" from="Player" to="." method="_on_Player_fed"]
+
+[connection signal="god_off" from="Player" to="." method="_on_Player_god_off"]
+
+[connection signal="god_on" from="Player" to="." method="_on_Player_god_on"]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+
+[connection signal="new_life" from="Player" to="." method="_on_Player_new_life"]
+
+[connection signal="timeout" from="FoodTimer" to="." method="_on_FoodTimer_timeout"]
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+
+[connection signal="timeout" from="PowerTimer" to="." method="_on_PowerTimer_timeout"]
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
+
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+
+

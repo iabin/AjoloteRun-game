@@ -1,0 +1,87 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://media/sprites/ajolote/frame_00_delay-0.14s.png" type="Texture" id=2]
+[ext_resource path="res://media/sprites/ajolote/frame_01_delay-0.12s.png" type="Texture" id=3]
+[ext_resource path="res://media/sprites/ajolote/frame_02_delay-0.12s.png" type="Texture" id=4]
+[ext_resource path="res://media/sprites/ajolote/frame_03_delay-0.12s.png" type="Texture" id=5]
+[ext_resource path="res://media/sprites/ajolote/frame_04_delay-0.12s.png" type="Texture" id=6]
+[ext_resource path="res://media/sprites/ajolote/frame_05_delay-0.14s.png" type="Texture" id=7]
+[ext_resource path="res://media/sprites/ajolote/frame_06_delay-0.12s.png" type="Texture" id=8]
+[ext_resource path="res://media/sprites/ajolote/frame_07_delay-0.12s.png" type="Texture" id=9]
+[ext_resource path="res://media/sprites/ajolote/frame_08_delay-0.12s.png" type="Texture" id=10]
+[ext_resource path="res://media/sprites/ajolote/frame_09_delay-0.12s.png" type="Texture" id=11]
+[ext_resource path="res://media/sound/dub.ogg" type="AudioStream" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 15.6979
+height = 109.035
+
+[node name="Player" type="Area2D"]
+
+position = Vector2( 315.377, 234.406 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Visibility" ]
+__meta__ = {
+"_edit_group_": true
+}
+speed = 400
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "right"
+frame = 6
+playing = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 0.540436, -5.94394 )
+rotation = 1.8326
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GodModeTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = false
+
+[node name="PowerMusic" type="AudioStreamPlayer2D" parent="." index="3"]
+
+position = Vector2( -12.4282, -8.10542 )
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+
+[connection signal="timeout" from="GodModeTimer" to="." method="_on_GodModeTimer_timeout"]
+
+

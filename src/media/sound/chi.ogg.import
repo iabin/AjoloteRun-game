@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chi.ogg-49f41bcaa87064898b46bc98b0d3b459.oggstr"
+
+[deps]
+
+source_file="res://media/sound/chi.ogg"
+dest_files=[ "res://.import/chi.ogg-49f41bcaa87064898b46bc98b0d3b459.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

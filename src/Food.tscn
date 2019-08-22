@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Food.gd" type="Script" id=1]
+[ext_resource path="res://media/sprites/food/grape.png" type="Texture" id=2]
+[ext_resource path="res://media/sprites/food/grap2e.png" type="Texture" id=3]
+[ext_resource path="res://media/sprites/food/7066ffdf6cd587f.png" type="Texture" id=4]
+[ext_resource path="res://media/sprites/food/fresa2f.png" type="Texture" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 13.3124
+height = 4.2872
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "strawberry",
+"speed": 4.0
+} ]
+
+[node name="Food" type="RigidBody2D"]
+
+position = Vector2( 21.5092, 5.0188 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 0
+mode = 0
+mass = 0.01
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+min_speed = 150
+max_speed = 250
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 145.533, 142.493 )
+scale = Vector2( 1.04163, 1.02662 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Pause" ]
+
+[node name="Visibility" type="VisibilityNotifier2D" parent="." index="1"]
+
+position = Vector2( 146.753, 141.827 )
+scale = Vector2( 0.971544, 1.05393 )
+rect = Rect2( -10, -10, 20, 20 )
+
+[node name="Grape" type="AnimatedSprite" parent="." index="2"]
+
+position = Vector2( 146.153, 141.983 )
+rotation = 2.79253
+scale = Vector2( 0.0455135, -0.0546464 )
+frames = SubResource( 2 )
+animation = "default"
+frame = 2
+playing = true
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Strawberry" type="AnimatedSprite" parent="." index="3"]
+
+position = Vector2( 136.167, 143.151 )
+rotation = -3.14159
+scale = Vector2( 0.223879, -0.226402 )
+frames = SubResource( 3 )
+animation = "strawberry"
+frame = 1
+playing = true
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Node2D" type="Node2D" parent="." index="4"]
+
+[connection signal="screen_exited" from="Visibility" to="." method="_on_Visibility_screen_exited"]
+
+

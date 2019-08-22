@@ -1,0 +1,83 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Life.gd" type="Script" id=1]
+[ext_resource path="res://media/sprites/life/frame_00_delay-0.5s.png" type="Texture" id=2]
+[ext_resource path="res://media/sprites/life/frame_01_delay-0.1s.png" type="Texture" id=3]
+[ext_resource path="res://media/sprites/life/frame_02_delay-0.1s.png" type="Texture" id=4]
+[ext_resource path="res://media/sprites/life/frame_03_delay-0.1s.png" type="Texture" id=5]
+[ext_resource path="res://media/sprites/life/frame_04_delay-0.1s.png" type="Texture" id=6]
+[ext_resource path="res://media/sprites/life/frame_05_delay-0.1s.png" type="Texture" id=7]
+[ext_resource path="res://media/sprites/life/frame_06_delay-0.1s.png" type="Texture" id=8]
+[ext_resource path="res://media/sprites/life/frame_07_delay-0.1s.png" type="Texture" id=9]
+[ext_resource path="res://media/sprites/life/frame_08_delay-0.1s.png" type="Texture" id=10]
+[ext_resource path="res://media/sprites/life/frame_09_delay-0.1s.png" type="Texture" id=11]
+[ext_resource path="res://media/sprites/life/frame_10_delay-0.1s.png" type="Texture" id=12]
+[ext_resource path="res://media/sprites/life/frame_11_delay-0.1s.png" type="Texture" id=13]
+[ext_resource path="res://media/sprites/life/frame_12_delay-0.1s.png" type="Texture" id=14]
+[ext_resource path="res://media/sprites/life/frame_13_delay-0.1s.png" type="Texture" id=15]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 13.3124
+height = 4.2872
+
+[node name="Life" type="RigidBody2D"]
+
+position = Vector2( 9.24268, -5.72166 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 0
+mode = 0
+mass = 0.01
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Material", "Transform", "Visibility", "Z Index" ]
+min_speed = 150
+max_speed = 300
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+position = Vector2( 143.932, 149.416 )
+scale = Vector2( 0.197815, 0.204272 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 8
+playing = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 142.567, 145.858 )
+scale = Vector2( 1.27096, 1.20893 )
+shape = SubResource( 2 )
+
+[node name="Visibility" type="VisibilityNotifier2D" parent="." index="2"]
+
+position = Vector2( 147.038, 139.064 )
+rect = Rect2( -10, -10, 20, 20 )
+
+[connection signal="screen_exited" from="Visibility" to="." method="_on_Visibility_screen_exited"]
+
+

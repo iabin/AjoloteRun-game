@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/fed.ogg-cd8307eefb7fbd1798f90d70067f253c.oggstr"
+
+[deps]
+
+source_file="res://media/sound/fed.ogg"
+dest_files=[ "res://.import/fed.ogg-cd8307eefb7fbd1798f90d70067f253c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
